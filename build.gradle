@@ -1,0 +1,43 @@
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+group = pGroup
+version = pVersion
+
+repositories {
+    maven {
+        url maven_path_topobyte
+    }
+    maven {
+        url 'http://mvn.topobyte.de'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.google.guava:guava:19.0'
+    compile 'de.topobyte:collections-utils:0.0.3'
+    testCompile 'junit:junit:4.12'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: maven_url_topobyte)
+        }
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourcesJar
+}
