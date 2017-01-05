@@ -134,4 +134,40 @@ public class WebPath implements Iterable<String>
 		return buffer.toString();
 	}
 
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + components.hashCode();
+		result = prime * result + (isDir ? 1231 : 1237);
+		result = prime * result + ups;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		WebPath other = (WebPath) obj;
+		if (isDir != other.isDir) {
+			return false;
+		}
+		if (ups != other.ups) {
+			return false;
+		}
+		if (!components.equals(other.components)) {
+			return false;
+		}
+		return true;
+	}
+
 }
