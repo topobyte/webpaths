@@ -49,6 +49,12 @@ public class TestWebPathsResolve
 
 		test("bar", "foo", ".", "bar");
 		test("foo/bar", "foo/", "bar");
+
+		test("bar", "", "bar");
+		test("", "", "");
+
+		Assert.assertEquals("",
+				WebPaths.get("").resolve(WebPaths.get("")).toString());
 	}
 
 	private void test(String expected, String first, String... more)
