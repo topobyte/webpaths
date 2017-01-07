@@ -37,6 +37,11 @@ public class WebPath implements Iterable<String>
 		return isDir;
 	}
 
+	void setDir(boolean isDir)
+	{
+		this.isDir = isDir;
+	}
+
 	public int getNameCount()
 	{
 		return components.size();
