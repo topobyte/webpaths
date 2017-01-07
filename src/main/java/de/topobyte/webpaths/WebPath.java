@@ -180,4 +180,54 @@ public class WebPath implements Iterable<String>
 		return true;
 	}
 
+	public WebPath subPathFrom(int from)
+	{
+		if (from < 0) {
+			throw new IllegalArgumentException();
+		}
+		if (from > ups + components.size()) {
+			throw new IllegalArgumentException();
+		}
+
+		if (from == 0) {
+			return this;
+		}
+
+		List<String> parts = new ArrayList<>();
+		parts.addAll(components);
+
+		if (from <= ups) {
+			int rem = ups - from;
+			return new WebPath(rem, parts, isDir);
+		}
+
+		int rem = from - ups;
+		if (rem == parts.size()) {
+			return new WebPath(0, new ArrayList<String>(), false);
+		}
+
+		return new WebPath(0, parts.subList(rem, parts.size()), isDir);
+	}
+
+	public WebPath subPathTo(int to)
+	{
+		if (to <= 0) {
+			throw new IllegalArgumentException();
+		}
+		if (to > ups + components.size()) {
+			throw new IllegalArgumentException();
+		}
+
+		if (to <= ups) {
+			return new WebPath(to, new ArrayList<String>(), true);
+		}
+
+		List<String> parts = new ArrayList<>();
+		parts.addAll(components);
+
+		int rem = to - ups;
+
+		return new WebPath(ups, parts.subList(0, rem), isDir);
+	}
+
 }
