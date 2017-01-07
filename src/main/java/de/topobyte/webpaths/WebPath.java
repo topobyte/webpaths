@@ -227,7 +227,10 @@ public class WebPath implements Iterable<String>
 
 		int rem = to - ups;
 
-		return new WebPath(ups, parts.subList(0, rem), isDir);
+		if (rem < parts.size()) {
+			return new WebPath(ups, parts.subList(0, rem), true);
+		}
+		return new WebPath(ups, parts, isDir);
 	}
 
 }
