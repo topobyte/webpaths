@@ -94,15 +94,25 @@ public class WebPath implements Iterable<String>
 			int remaining = other.ups - Math.min(ups, other.ups);
 			return new WebPath(remaining, other.components, other.isDir);
 		}
-		int min = Math.min(components.size(), other.components.size());
+
+		int n1 = components.size();
+		int n2 = other.components.size();
+
+		int min = Math.min(n1, n2);
+
 		int equal = 0;
 		for (int i = 0; i < min; i++) {
-			if (components.get(i).equals(other.components.get(i))) {
+			boolean compIsDir1 = i < n1 - 1 | isDir;
+			boolean compIsDir2 = i < n2 - 1 | other.isDir;
+			String comp1 = components.get(i);
+			String comp2 = other.components.get(i);
+			if (comp1.equals(comp2) && compIsDir1 == compIsDir2) {
 				equal += 1;
 			} else {
 				break;
 			}
 		}
+
 		int nup;
 		if (isDir) {
 			nup = components.size() - equal;
