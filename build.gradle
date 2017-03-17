@@ -21,7 +21,7 @@ repositories {
 
 dependencies {
     compile 'com.google.guava:guava:19.0'
-    compile 'de.topobyte:collections-utils:0.0.3'
+    compile 'de.topobyte:collections-utils:0.0.4'
     testCompile 'junit:junit:4.12'
 }
 
