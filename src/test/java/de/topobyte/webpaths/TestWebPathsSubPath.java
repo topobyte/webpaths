@@ -2,9 +2,14 @@ package de.topobyte.webpaths;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestWebPathsSubPath
 {
+
+	final static Logger logger = LoggerFactory
+			.getLogger(TestWebPathsSubPath.class);
 
 	@Test
 	public void testFrom()
@@ -43,8 +48,12 @@ public class TestWebPathsSubPath
 
 	private void testFrom(String expected, String spec, int from)
 	{
+		logger.debug(String.format("spec:     '%s', from: %d, expected: '%s'",
+				spec, from, expected));
 		WebPath path = WebPaths.get(spec);
+		logger.debug(String.format("path:     '%s'", path));
 		WebPath subpath = path.subPathFrom(from);
+		logger.debug(String.format("subpath:  '%s'", subpath));
 		Assert.assertEquals(expected, subpath.toString());
 	}
 
