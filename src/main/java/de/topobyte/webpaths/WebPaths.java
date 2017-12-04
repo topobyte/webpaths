@@ -17,16 +17,16 @@ public class WebPaths
 	public static WebPath get(String first, String... more)
 	{
 		WebPath result = getSingle(first);
-		if (more.length > 0) {
-			result.setDir(true);
-		}
+		// if (more.length > 0) {
+		// result.setDir(true);
+		// }
 
 		for (int i = 0; i < more.length; i++) {
 			WebPath next = getSingle(more[i]);
 			result = result.resolve(next);
-			if (i < more.length - 1) {
-				result.setDir(true);
-			}
+			// if (i < more.length - 1) {
+			// result.setDir(true);
+			// }
 		}
 
 		return result;

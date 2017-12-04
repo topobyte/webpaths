@@ -15,18 +15,18 @@ public class TestWebPathsGet
 		test("test/foo/", "test/", "foo/");
 		test("test/foo/bar/", "test/", "foo/", "bar/");
 
-		test("test/foo", "test", "foo");
-		test("test/foo/bar", "test", "foo", "bar");
+		test("foo", "test", "foo");
+		test("bar", "test", "foo", "bar");
 
-		test("test/foo/", "test", "foo/");
-		test("test/foo/bar/", "test", "foo", "bar/");
+		test("foo/", "test", "foo/");
+		test("bar/", "test", "foo", "bar/");
 
-		test("test/", "test", ".");
-		test("test/", "test", ".", ".");
+		test("/", "test", ".");
+		test("/", "test", ".", ".");
 		test("test/", "test/", ".");
 		test("test/", "test/", ".", ".");
 
-		test("test/", "test/foo", "..");
+		test("/", "test/foo", "..");
 		test("test/", "test/foo/", "..");
 	}
 
