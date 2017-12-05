@@ -1,1 +1,3 @@
-rootProject.name = pName
+include 'core', 'nio'
+project(':core').name = 'webpaths-core'
+project(':nio').name = 'webpaths-nio'
