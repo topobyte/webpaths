@@ -52,13 +52,21 @@ public class TestWebPathsRelativize
 		test("foo/", "/", "/foo/");
 		test("foo/bar", "/", "/foo/bar");
 		test("foo/bar/", "/", "/foo/bar/");
-		test("", "/", "/");
 
 		test("bar", "foo/", "foo/bar");
 		test("foo/bar", "test", "foo/bar");
 		test("bar", "foo/", "foo/bar");
 		test("foo/bar", "fo", "foo/bar");
 		test("foo/bar", "foo", "foo/bar");
+
+		test("", "/", "/");
+		test("", "foo", "foo");
+		test("", "foo/bar", "foo/bar");
+		test("", "foo/bar/cat", "foo/bar/cat");
+
+		test("/", "foo", "/");
+		test("../", "foo/bar", "/");
+		test("../../", "foo/bar/cat", "/");
 	}
 
 	private void test(String expected, String first, String second)

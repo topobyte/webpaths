@@ -55,9 +55,10 @@ public class WebPaths
 		List<String> components = new ArrayList<>();
 
 		List<String> parts = SPLITTER.splitToList(spec);
+		boolean isDir = spec.endsWith("/");
 
 		if (parts.isEmpty()) {
-			return new WebPath(0, new ArrayList<String>(), false);
+			return new WebPath(0, new ArrayList<String>(), isDir);
 		}
 
 		boolean lastWasDir = false;
@@ -78,7 +79,6 @@ public class WebPaths
 			}
 		}
 
-		boolean isDir = spec.endsWith("/");
 		isDir |= lastWasDir;
 
 		return new WebPath(ups, components, isDir);

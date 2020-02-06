@@ -44,6 +44,11 @@ public class WebPath implements Iterable<String>
 		Iterables.addAll(this.components, components);
 	}
 
+	public boolean isRoot()
+	{
+		return components.isEmpty() && isDir && ups == 0;
+	}
+
 	public int getUps()
 	{
 		return ups;
@@ -112,6 +117,9 @@ public class WebPath implements Iterable<String>
 
 	public WebPath relativize(WebPath other)
 	{
+		if (isRoot() && other.isRoot()) {
+			return new WebPath(0, new ArrayList<String>(), false);
+		}
 		if (ups != other.ups) {
 			int remaining = other.ups - Math.min(ups, other.ups);
 			return new WebPath(remaining, other.components, other.isDir);
