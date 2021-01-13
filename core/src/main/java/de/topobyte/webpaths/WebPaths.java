@@ -18,6 +18,7 @@
 package de.topobyte.webpaths;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.common.base.Joiner;
@@ -30,6 +31,11 @@ public class WebPaths
 
 	static Splitter SPLITTER = Splitter.on('/').omitEmptyStrings();
 	static Joiner JOINER = Joiner.on('/');
+
+	public static WebPath simple(String... more)
+	{
+		return new WebPath(0, Arrays.asList(more), false);
+	}
 
 	public static WebPath get(String first, String... more)
 	{
